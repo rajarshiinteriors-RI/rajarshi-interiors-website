@@ -1,0 +1,49 @@
+media:
+  input: assets/uploads
+  output: /assets/uploads
+  rename: safe
+  extensions: [jpg, jpeg, png, webp]
+content:
+  - name: site
+    label: Website settings
+    type: file
+    path: content/site.json
+    operations:
+      delete: false
+    fields:
+      - { name: brand, label: Business name, type: string, required: true }
+      - { name: tagline, label: Tagline, type: string }
+      - { name: description, label: Homepage description, type: text }
+      - { name: phone, label: Phone with country code, type: string }
+      - { name: whatsapp, label: WhatsApp digits with country code, type: string }
+      - { name: email, label: Enquiry email, type: string }
+      - { name: city, label: Business location, type: string }
+      - { name: instagram, label: Instagram URL, type: string }
+      - { name: hero_image, label: Homepage cover photo, type: image }
+      - { name: about_image, label: About section photo, type: image }
+      - name: services
+        label: Services
+        type: object
+        list: true
+        fields:
+          - { name: number, label: Display number, type: string }
+          - { name: title, label: Service title, type: string, required: true }
+          - { name: description, label: Description, type: text }
+  - name: projects
+    label: Project gallery
+    type: collection
+    path: content/projects
+    format: json
+    filename: "{primary}.json"
+    view:
+      fields: [title, type, published]
+      primary: title
+    fields:
+      - { name: title, label: Project title, type: string, required: true }
+      - { name: type, label: Category or location, type: string }
+      - { name: image, label: Main photo, type: image, required: true }
+      - { name: sample, label: Sample inspiration image (not our work), type: boolean }
+      - { name: published, label: Show on website, type: boolean }
+settings:
+  content:
+    merge: true
