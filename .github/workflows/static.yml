@@ -33,7 +33,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-          # NEW STEP - Generate updated website data
       - name: Build website content
         run: python3 build.py
       - name: Upload artifact
